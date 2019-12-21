@@ -1,5 +1,25 @@
 App component
-<app-header></app-header>
+<app-header
+  color="green"
+  mytitle="my title"
+  [count]="count"
+  (myIncrease)="increase()"
+  (myDecrese)="decrese()"
+  (myOnSlider)="changeSlider($event)"
+  >
+</app-header>
+
+
+<app-header mytitle="{{title}}" [count]="count1"></app-header>
+<app-header [mytitle]="title"></app-header>
+<app-header [mytitle]="'my title'"></app-header>
+<app-header [mytitle]="'my title'"></app-header>
+
+
+
+
+
+
 
 <app-users>
   <h1>hello</h1>

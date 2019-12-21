@@ -12,4 +12,9 @@ export class ListComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  public listMethod() {
+    console.log('list');
+
+  }
 }

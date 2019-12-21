@@ -1,1 +1,42 @@
 <p>user-header works!</p>
+<mat-slider (change)="changeSliderValue($event)"></mat-slider>
+<button mat-button>Click me!</button>
+<button>Ok</button>
+
+
+<!-- <input type="text" > -->
+
+
+{{ name }}
+{{ age }}
+
+{{ 1 + 1 + 1 }}
+
+{{ user.name }} {{user.email}}
+
+<!-- {{ random() }} -->
+
+
+{{displatTetx('new')}}
+{{displatTetx('new231312')}}
+{{displatTetx('new235353646')}}
+
+
+<div>
+
+  {{z}}
+
+  {{getZ}}
+  <button (click)="log($event)">ok</button>
+
+  <input type="text" (input)="myInput($event)" (focus)="myFocus($event)" (blur)="myBlur($event)">
+
+  {{userInput}}
+
+
+  <img src="{{itemImageUrl}}" alt="{{name}}">
+
+  <img (click)="switch()" [class]="name" [src]="toogle ? itemImageUrl : image2" [alt]="name">
+
+  <input [type]="toogle ? 'text' : 'password'">
+</div>
