@@ -14,9 +14,8 @@
 <div class="wrapper">
   <mat-spinner *ngIf="isLoading; else productsBlock"></mat-spinner>
   <ng-template #productsBlock>
-    <app-product-list *appAcl="'view-product'" count="'4234234'" [products]="products" (onBuy)="buy($event)"></app-product-list>
+    <app-product-list *appAcl="'view-product'" count="'4234234'" [products]="products$ | async" (onBuy)="buy($event)"></app-product-list>
   </ng-template>
-  <app-cart [cart]="cart"></app-cart>
 </div>
 
 

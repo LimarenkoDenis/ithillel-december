@@ -6,7 +6,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
 export class HighlightDirective {
 
   constructor(private el: ElementRef) {
-    console.log(this.el.nativeElement);
+    // console.log(this.el.nativeElement);
 
   }
 
@@ -23,7 +23,7 @@ export class HighlightDirective {
 
   private highlight(color: string) {
 
-    console.log(this.el, color);
+    // console.log(this.el, color);
 
     this.el.nativeElement.style.backgroundColor = color;
   }

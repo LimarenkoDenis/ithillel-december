@@ -1,3 +1,4 @@
+import { ProductsService } from './services/products.service';
 import { CartModule } from './../cart/cart.module';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -15,6 +16,9 @@ import { ProdcutsSearchPipe } from './pipes/prodcuts-search.pipe';
     ProductCardComponent,
     ProductListComponent,
     ProdcutsSearchPipe
+  ],
+  providers: [
+    ProductsService
   ],
   imports: [
     CommonModule,
