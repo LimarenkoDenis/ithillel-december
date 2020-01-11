@@ -1,0 +1,46 @@
+{{date | date | reverse}}
+
+{{date | date }}
+{{date | date: 'YYYY, MM - DD' }}
+{{date | date: 'fullDate' }}
+{{date | date: 'shortTime' }}
+{{date | date: 'mm:ss' }}
+{{date | date }}
+{{ pi }}
+
+{{ pi |  number:'3.1-5' }}
+
+<button *appAcl="'add-product'">Add product</button>
+<div class="wrapper">
+  <mat-spinner *ngIf="isLoading; else productsBlock"></mat-spinner>
+  <ng-template #productsBlock>
+    <app-product-list *appAcl="'view-product'" count="'4234234'" [products]="products" (onBuy)="buy($event)"></app-product-list>
+  </ng-template>
+  <app-cart [cart]="cart"></app-cart>
+</div>
+
+
+
+
+
+<button (click)="swithcView('list')">list</button>
+<button (click)="swithcView('table')">Table</button>
+<button (click)="swithcView('row')">Row</button>
+
+<div [ngSwitch]="view">
+  <div *ngSwitchCase="'list'">LIST</div>
+  <div *ngSwitchCase="'table'">Table</div>
+  <div *ngSwitchCase="'row'">ROW</div>
+  <div *ngSwitchDefault>LIst</div>
+</div>
+
+
+<div *ngFor="let item of account | keyvalue">
+  {{item.key}} {{item.value}}
+</div>
+
+
+
+<pre>
+  {{ account | json }}
+</pre>

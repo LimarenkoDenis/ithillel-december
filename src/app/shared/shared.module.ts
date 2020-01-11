@@ -2,17 +2,28 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
-
-
-
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatListModule} from '@angular/material/list';
+import { ReversePipe } from './pipes/reverse.pipe';
+import {MatInputModule} from '@angular/material/input';
+import { AclDirective } from './directives/acl.directive';
+import { HighlightDirective } from './directives/highlight.directive'
 @NgModule({
-  declarations: [],
+  declarations: [ReversePipe, AclDirective, HighlightDirective],
   imports: [
     CommonModule
   ],
   exports: [
     MatSliderModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatListModule,
+    ReversePipe,
+    MatInputModule,
+    AclDirective,
+    HighlightDirective
   ]
 })
 export class SharedModule { }
