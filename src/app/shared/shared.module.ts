@@ -9,6 +9,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
 import {MatInputModule} from '@angular/material/input';
 import { AclDirective } from './directives/acl.directive';
 import { HighlightDirective } from './directives/highlight.directive'
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @NgModule({
   declarations: [ReversePipe, AclDirective, HighlightDirective],
   imports: [
@@ -23,7 +25,9 @@ import { HighlightDirective } from './directives/highlight.directive'
     ReversePipe,
     MatInputModule,
     AclDirective,
-    HighlightDirective
+    HighlightDirective,
+    MatSnackBarModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule { }

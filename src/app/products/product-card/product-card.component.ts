@@ -18,6 +18,10 @@ export class ProductCardComponent implements OnInit {
   public onBuy: EventEmitter<IProduct> = new EventEmitter();
 
 
+  @Output()
+  public onDeleteProduct: EventEmitter<number> = new EventEmitter();
+
+
   constructor() { }
 
   ngOnInit() {
@@ -26,6 +30,10 @@ export class ProductCardComponent implements OnInit {
 
   public buy(product: IProduct): void {
     this.onBuy.emit(product);
+  }
+
+  public deleteProduct(id: number): void {
+    this.onDeleteProduct.emit(id);
   }
 
 }

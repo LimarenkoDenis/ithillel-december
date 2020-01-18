@@ -14,6 +14,9 @@ export class ProductListComponent implements OnInit {
   @Output()
   public onBuy: EventEmitter<IProduct> = new EventEmitter();
 
+  @Output()
+  public onDeleteProduct: EventEmitter<number> = new EventEmitter();
+
 
   constructor() { }
 
@@ -25,5 +28,8 @@ export class ProductListComponent implements OnInit {
     this.onBuy.emit(product);
   }
 
+  public deleteProduct(id: number): void {
+    this.onDeleteProduct.emit(id);
+  }
 
 }

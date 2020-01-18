@@ -1,22 +1,33 @@
-{{date | date | reverse}}
+<button *appAcl="'add-product'" (click)="addProduct()">Add product</button>
 
-{{date | date }}
-{{date | date: 'YYYY, MM - DD' }}
-{{date | date: 'fullDate' }}
-{{date | date: 'shortTime' }}
-{{date | date: 'mm:ss' }}
-{{date | date }}
-{{ pi }}
-
-{{ pi |  number:'3.1-5' }}
-
-<button *appAcl="'add-product'">Add product</button>
 <div class="wrapper">
   <mat-spinner *ngIf="isLoading; else productsBlock"></mat-spinner>
   <ng-template #productsBlock>
-    <app-product-list *appAcl="'view-product'" count="'4234234'" [products]="products$ | async" (onBuy)="buy($event)"></app-product-list>
+    <!-- <app-product-list *appAcl="'view-product'" count="'4234234'" [products]="products$ | async" (onBuy)="buy($event)"></app-product-list> -->
+    <app-product-list
+      *appAcl="'view-product'"
+      count="'4234234'"
+      [products]="products"
+      (onBuy)="buy($event)"
+      (onDeleteProduct)="deleteProduct($event)"
+      >
+    </app-product-list>
   </ng-template>
 </div>
+
+<mat-paginator [length]="100"
+              [pageIndex]="pageOptions._page"
+              [pageSize]="pageOptions._limit"
+              [pageSizeOptions]="[2, 5, 10, 25, 100]"
+              (page)="changePageOptions($event)">
+</mat-paginator>
+
+
+
+
+
+
+
 
 
 

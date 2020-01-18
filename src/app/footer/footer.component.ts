@@ -1,4 +1,6 @@
+import { ProductsService } from './../products/services/products.service';
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from '../products/interfaces/product';
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private productsService: ProductsService
+  ) { }
 
   ngOnInit() {
+    this.productsService.newProduct$.subscribe((product: IProduct) => {
+      console.log(product, 'footer');
+    })
   }
 
 }

@@ -6,6 +6,9 @@ appHighlight
   *ngFor="let product of products | prodcutsSearch: inputBlock.value; index as i; odd as myOdd"
   [product]="product"
   [odd]="myOdd"
-  (onBuy)="buy($event)">
+  (onBuy)="buy($event)"
+  (onDeleteProduct)="deleteProduct($event)">
 
 </app-product-card>
+
+

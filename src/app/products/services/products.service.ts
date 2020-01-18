@@ -1,101 +1,53 @@
+import { IPRoductPaginationOptions } from './../interfaces/product-pagination-options';
+import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 import {IProduct} from '../interfaces/product';
-import {Observable, of} from 'rxjs';
-import {delay} from 'rxjs/operators'
+import { Observable, of, BehaviorSubject } from 'rxjs';
+import {delay, tap} from 'rxjs/operators'
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { IProductToCreate } from '../interfaces/product-to-create';
 @Injectable()
 export class ProductsService {
+  public newProduct$: BehaviorSubject<IProduct> = new BehaviorSubject(null);
 
   public a = 1;
-  private _products: IProduct[] = [
-    {
-      "id": 0,
-      "title": "Cola",
 
-      "description": "descr",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 12,
-      "type": "drink",
-      "created": "Sat Aug 31 2019 16:11:42 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 2,
-      "title": "Pepsi cola",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 11,
-      "type": "drink",
-      "created": "Sat Aug 31 2019 16:11:42 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 3,
-      "title": "Big Mac",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.Sdwch_BigMac.png",
-      "price": 22,
-      "type": "sandwich",
-      "created": "Sat Aug 31 2019 16:11:42 GMT+0300 (Eastern European Summer Time)"
-    },
-    {
-      "id": 4,
-      "title": "Big Tasty",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.Sdwch_BigTasty.png",
-      "price": 45,
-      "type": "sandwich"
-    },
-    {
-      "id": 5,
-      "title": "pie",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.MuffinBlackberry.png",
-      "price": 10,
-      "type": "dessert"
-    },
-    {
-      "id": 6,
-      "title": "chocolate",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 22,
-      "type": "dessert"
-    },
-    {
-      "id": 7,
-      "title": "ice cream",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "http://thejizn.com/wp-content/uploads/2016/06/coca-cola-stash-can-12-oz-1_1.jpg",
-      "price": 45,
-      "type": "dessert"
-    },
-    {
-      "id": 8,
-      "title": "Orange juice small",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.JuiceOrangeSmall.png",
-      "price": 45,
-      "type": "drink"
-    },
-    {
-      "id": 9,
-      "title": "Coffee 'Late' small",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.CoffeeLatteSmall.png",
-      "price": 45,
-      "type": "drink"
-    },
-    {
-      "title": "Pizza product",
-      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam quae culpa porro ducimus!",
-      "photo": "https://www.mcdonalds.ua/content/dam/Ukraine/Item_Images/hero.CoffeeLatteSmall.png",
-      "price": 45,
-      "type": "drink",
-      "id": 10
-    }
-  ];
+  public constructor(
+    private http: HttpClient
+  ) {}
 
-  public getProducts(): Observable<IProduct[]> {
-    return of(this._products).pipe(
-      delay(2000)
+  public getProducts(options: IPRoductPaginationOptions): Observable<IProduct[]> {
+    const params: HttpParams = new HttpParams({
+      fromObject: {
+        _page: String(options._page),
+        _limit: String(options._limit)
+      }
+    });
+
+    return this.http.get<IProduct[]>(`${environment.api}/products`, { params });
+
+
+    // return of(this._products).pipe(
+    //   delay(2000)
+    // );
+  }
+
+
+  public  addProduct(product: IProductToCreate): Observable<IProduct> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Authorization': 'token'
+    });
+
+    return this.http.post<IProduct>(`${environment.api}/products`, product, {headers}).pipe(
+      tap((item: IProduct) => this.newProduct$.next(item))
     );
+  }
+
+  public deleteProduct(id: number): Observable<void> {
+    return this.http.delete<void>(`${environment.api}/products/${id}`);
+  }
+
+  public update(prodcut: IProductToCreate, id: number): Observable<IProduct> {
+    return this.http.patch<IProduct>(`${environment.api}/prcts/${id}`, prodcut);
   }
 }
