@@ -28,7 +28,8 @@ export class ProductCardComponent implements OnInit {
   }
 
 
-  public buy(product: IProduct): void {
+  public buy(event: MouseEvent, product: IProduct): void {
+    event.stopPropagation();
     this.onBuy.emit(product);
   }
 

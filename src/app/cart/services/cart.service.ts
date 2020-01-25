@@ -19,6 +19,8 @@ export class CartService {
   }
 
   public addToCart(product: IProduct): void {
+    console.log(product);
+
     const element: ICart | null = this.cart.find((item: ICart) => item.id === product.id);
 
     if (!element) {
@@ -32,5 +34,11 @@ export class CartService {
     this.cart[index] = {...this.cart[index], amount: this.cart[index].amount + 1};
 
     this.notificationService.send('Обновили колличество');
+  }
+
+  public get totalSum(): number {
+    return this.cart.reduce((acc: number, next: ICart) => {
+      return acc + next.amount * next.price;
+    }, 0);
   }
 }

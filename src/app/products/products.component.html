@@ -1,4 +1,4 @@
-<button *appAcl="'add-product'" (click)="addProduct()">Add product</button>
+<!-- <button *appAcl="'add-product'" (click)="addProduct()">Add product</button> -->
 
 <div class="wrapper">
   <mat-spinner *ngIf="isLoading; else productsBlock"></mat-spinner>
@@ -21,36 +21,3 @@
               [pageSizeOptions]="[2, 5, 10, 25, 100]"
               (page)="changePageOptions($event)">
 </mat-paginator>
-
-
-
-
-
-
-
-
-
-
-
-
-<button (click)="swithcView('list')">list</button>
-<button (click)="swithcView('table')">Table</button>
-<button (click)="swithcView('row')">Row</button>
-
-<div [ngSwitch]="view">
-  <div *ngSwitchCase="'list'">LIST</div>
-  <div *ngSwitchCase="'table'">Table</div>
-  <div *ngSwitchCase="'row'">ROW</div>
-  <div *ngSwitchDefault>LIst</div>
-</div>
-
-
-<div *ngFor="let item of account | keyvalue">
-  {{item.key}} {{item.value}}
-</div>
-
-
-
-<pre>
-  {{ account | json }}
-</pre>

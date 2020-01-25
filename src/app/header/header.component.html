@@ -1,11 +1,3 @@
-<p [style.color]="color">{{title}}!</p>
-
-{{count}}
-
-
-
-<button (click)="increse()">Increase</button>
-<button (click)="decrese()">decrese</button>
-
-
-<input type="number" (input)="mySlider($event)">
+<div [routerLink]="['/cart']">
+  Total:  {{totalSum}}
+</div>

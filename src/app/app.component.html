@@ -1,47 +1,10 @@
-<!-- App component
-<app-header
-  color="green"
-  mytitle="my title"
-  [count]="count"
-  (myIncrease)="increase()"
-  (myDecrese)="decrese()"
-  (myOnSlider)="changeSlider($event)"
-  >
-</app-header>
-
-
-<app-header mytitle="{{title}}" [count]="count1"></app-header>
-<app-header [mytitle]="title"></app-header>
-<app-header [mytitle]="'my title'"></app-header>
-<app-header [mytitle]="'my title'"></app-header>
-
-
-
-
-
-
-<app-users>
-  <h1>hello</h1>
-</app-users>
-
-
-<app-users>
-  <h1>hello234</h1>
-</app-users>
-
-<app-footer></app-footer>
-
-
-<app-card></app-card> -->
-
-
-{{text}}
+<app-menu></app-menu>
+<app-header></app-header>
 <div class="wrapper">
-  <app-products></app-products>
-  <app-cart></app-cart>
+  <router-outlet></router-outlet>
 </div>
-
-
-
-
 <app-footer></app-footer>
+
+
+
+<!-- <router-outlet></router-outlet> -->

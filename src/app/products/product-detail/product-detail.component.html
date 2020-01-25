@@ -1,0 +1,8 @@
+<p>product-detail works!</p>
+<app-product-card [product]="product$ | async"></app-product-card>
+
+
+<button [routerLink]="['comments']">Comments</button>
+<button [routerLink]="['specs']">Specs</button>
+
+<router-outlet></router-outlet>

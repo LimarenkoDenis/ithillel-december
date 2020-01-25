@@ -2,8 +2,9 @@
 <input matInput placeholder="Favorite food" #inputBlock appHighlight>
 
 <app-product-card
-appHighlight
+  appHighlight
   *ngFor="let product of products | prodcutsSearch: inputBlock.value; index as i; odd as myOdd"
+  [routerLink]="[product.id]"
   [product]="product"
   [odd]="myOdd"
   (onBuy)="buy($event)"

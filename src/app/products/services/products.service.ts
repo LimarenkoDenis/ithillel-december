@@ -16,6 +16,10 @@ export class ProductsService {
     private http: HttpClient
   ) {}
 
+  public getProduct(id: number): Observable<IProduct | null> {
+    return this.http.get<IProduct | null>(`${environment.api}/products/${id}`);
+  }
+
   public getProducts(options: IPRoductPaginationOptions): Observable<IProduct[]> {
     const params: HttpParams = new HttpParams({
       fromObject: {

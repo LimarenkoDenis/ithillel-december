@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
@@ -11,10 +12,15 @@ import { AclDirective } from './directives/acl.directive';
 import { HighlightDirective } from './directives/highlight.directive'
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MenuComponent } from './components/menu/menu.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactsComponent } from './components/contacts/contacts.component';
+
 @NgModule({
-  declarations: [ReversePipe, AclDirective, HighlightDirective],
+  declarations: [ReversePipe, AclDirective, HighlightDirective, MenuComponent, AboutComponent, ContactsComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
   ],
   exports: [
     MatSliderModule,
@@ -27,7 +33,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AclDirective,
     HighlightDirective,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MenuComponent,
+    AboutComponent,
+    ContactsComponent,
   ]
 })
 export class SharedModule { }

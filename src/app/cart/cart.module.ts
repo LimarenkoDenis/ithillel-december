@@ -1,4 +1,4 @@
-import { CartService } from './services/cart.service';
+import { RouterModule } from '@angular/router';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,9 +10,17 @@ import { CartComponent } from './cart.component';
   declarations: [CartComponent],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    RouterModule.forChild([
+      {
+        path: 'cart', component: CartComponent, children: [
+          // {
+
+          // }
+        ]
+      }
+    ])
   ],
   exports: [CartComponent],
-  providers: [CartService]
 })
 export class CartModule { }

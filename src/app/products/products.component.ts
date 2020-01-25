@@ -1,14 +1,15 @@
 import { IPRoductPaginationOptions } from './interfaces/product-pagination-options';
 import { NotificationService } from './../shared/services/notification.service';
 import { Observable, Subscription } from 'rxjs';
-import {CartService} from './../cart/services/cart.service';
-import {ProductsService} from './services/products.service';
-import {ICart} from './interfaces/cart';
-import {IProduct} from './interfaces/product';
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import { CartService } from './../cart/services/cart.service';
+import { ProductsService } from './services/products.service';
+import { ICart } from './interfaces/cart';
+import { IProduct } from './interfaces/product';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 
 
@@ -24,22 +25,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
     _limit: 2
   };
 
-
-  public date: Date = new Date();
-  public pi: number = Math.PI;
-  public account = {
-    name: 'Dan',
-    title: 'SW',
-    items: [1, 2]
-  }
-  public view: 'list' | 'table' | 'row' = 'list';
-
-
   public isLoading: boolean = true;
   public products$: Observable<IProduct[]>;
   public products: IProduct[];
-
-  public a;
   public productSubscription: Subscription = new Subscription();
 
   public constructor(
@@ -47,6 +35,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private notificationService: NotificationService,
     private matSnackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute,
+    private _router: Router,
     // ...
   ) {
     // console.log(productServiece);
@@ -55,28 +45,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
 
   public ngOnInit() {
-    this.getProducts(this.pageOptions);
-
-
+    this.activatedRoute.queryParamMap.subscribe((data: ParamMap) => {
+      this.getProducts({
+        _limit: Number(data.get('_limit')) || this.pageOptions._limit,
+        _page: Number(data.get('_page')) || this.pageOptions._page,
+      });
+    });
+    // this.getProducts(this.pageOptions);
     // this.products$ = this.productServiece.getProducts();
-
-    this.a = this.productServiece.a;
-
-    console.log(this.a);
 
     setTimeout(() => this.isLoading = false, 500);
   }
 
-
-  public swithcView(view: 'list' | 'table' | 'row') {
-    this.view = view;
-  }
-
-  public reverse(value) {
-    return value.s
-  }
-
   public buy(product: IProduct): void {
+
+    console.log(product);
+
     this.cartService.addToCart(product);
   }
 
@@ -89,11 +73,11 @@ export class ProductsComponent implements OnInit, OnDestroy {
       price: Math.random(),
       type: 'new type'
     })
-    .subscribe((res: IProduct) => {
-      this.notificationService.send(`${res.title} has been successfuly added!`);
-      this.getProducts(this.pageOptions);
-      this.isLoading = false;
-    });
+      .subscribe((res: IProduct) => {
+        this.notificationService.send(`${res.title} has been successfuly added!`);
+        this.getProducts(this.pageOptions);
+        this.isLoading = false;
+      });
   }
 
   public getProducts(options: IPRoductPaginationOptions): void {
@@ -103,10 +87,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   public changePageOptions(options: PageEvent): void {
-    this.getProducts({
-      _limit: options.pageSize,
-      _page: options.pageIndex,
-    });
+    this._router.navigate(
+      [''],
+      {
+        queryParams: { _limit: options.pageSize, _page: options.pageIndex },
+        relativeTo: this.activatedRoute
+      }
+    );
+    // this.getProducts({
+    //   _limit: options.pageSize,
+    //   _page: options.pageIndex,
+    // });
   }
 
   public deleteProduct(id: number): void {

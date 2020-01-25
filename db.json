@@ -138,6 +138,14 @@
       "price": 0.1346338419867621,
       "type": "new type",
       "id": 17
+    },
+    {
+      "title": "0.8439160594161805",
+      "description": "description",
+      "photo": "",
+      "price": 0.012231694923781067,
+      "type": "new type",
+      "id": 18
     }
   ],
   "favorites": []

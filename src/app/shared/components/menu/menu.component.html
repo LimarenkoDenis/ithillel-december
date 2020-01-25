@@ -1,0 +1,14 @@
+<button
+    routerLink="products"
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    >Home/Products</button>
+<button routerLink="/about" routerLinkActive="active">About</button>
+<button routerLink="/contacts" routerLinkActive="active">Contacts</button>
+
+
+<!-- *appAcl="'add-product'" -->
+<button routerLinkActive="active" (click)="goToPage()">Admin</button>
+
+
+<a href="https://angular.io/guide/router">A</a>
