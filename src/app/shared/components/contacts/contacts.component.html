@@ -1,1 +1,44 @@
 <p>contacts works!</p>
+
+
+
+<button (click)="addPizza()">+</button>
+
+<form [formGroup]="form" (submit)="save()">
+  <input type="text" matInput formControlName="name" placeholder="name">
+
+
+  <div [ngClass]="{'error': form.get('email').invalid && form.get('email').touched}">
+    <input type="text" matInput formControlName="email" placeholder="email">
+    <span *ngIf="form.get('email').errors && form.get('email').touched && form.get('email').errors.email">Email must be correct format</span>
+    <span *ngIf="form.get('email').touched && form.get('email').errors && form.get('email').errors.exist">Email already exist</span>
+  </div>
+
+
+
+  <div>
+    <input type="password" matInput formControlName="password" placeholder="password">
+    <span *ngIf="form.get('password').invalid && form.get('password').errors && form.get('password').errors.minlength && form.get('password').touched">
+      Min lenght 6
+    </span>
+    <span *ngIf="form.get('password').invalid && form.get('password').errors && form.get('password').errors.maxlength && form.get('password').touched">
+      Max lenght 18
+    </span>
+  </div>
+  <input type="password"  matInput formControlName="confirmPassord" placeholder="confirmPassord">
+
+
+  <span *ngIf="form.errors && form.errors.nomatch">Password should match</span>
+
+
+  <input type="checkbox" formControlName="policy">
+
+
+  <!-- <mat-label>Choose a date</mat-label> -->
+  <input matInput [matDatepicker]="picker" formControlName="birthday">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+
+
+  <button [disabled]="form.invalid">Submit</button>
+</form>

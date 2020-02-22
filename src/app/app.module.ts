@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AdminComponent } from './admin/admin.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,8 @@ import { AdminComponent } from './admin/admin.component';
     BrowserAnimationsModule,
     ProductsModule,
     // CartModule,
+    // FormsModule,
+    ReactiveFormsModule,
     SharedModule,
     RouterModule.forRoot(routes)
   ],

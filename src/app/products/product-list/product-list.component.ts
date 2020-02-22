@@ -1,5 +1,6 @@
 import { IProduct } from './../interfaces/product';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -16,6 +17,9 @@ export class ProductListComponent implements OnInit {
 
   @Output()
   public onDeleteProduct: EventEmitter<number> = new EventEmitter();
+
+
+  public searchControl: FormControl = new FormControl('Initial value');
 
 
   constructor() { }

@@ -15,12 +15,17 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { MenuComponent } from './components/menu/menu.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactsComponent } from './components/contacts/contacts.component';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [ReversePipe, AclDirective, HighlightDirective, MenuComponent, AboutComponent, ContactsComponent],
   imports: [
     CommonModule,
     RouterModule,
+    MatDatepickerModule,
+    ReactiveFormsModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatSliderModule,
@@ -37,6 +42,8 @@ import { ContactsComponent } from './components/contacts/contacts.component';
     MenuComponent,
     AboutComponent,
     ContactsComponent,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class SharedModule { }

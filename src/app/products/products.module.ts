@@ -10,6 +10,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProdcutsSearchPipe } from './pipes/prodcuts-search.pipe';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductSpecComponent } from './product-spec/product-spec.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -30,6 +31,7 @@ import { ProductSpecComponent } from './product-spec/product-spec.component';
     SharedModule,
     // CartModule,
     RouterModule,
+    ReactiveFormsModule,
   ],
   exports: [
     ProductsComponent
